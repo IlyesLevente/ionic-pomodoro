@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="inline">
+      Lista
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="delete-wrapper">
+    <ion-button (click)="deleteTasks()" size="small" style="--background: #D81159" class="center">
+      Töröl
+    </ion-button>
+  </div>
+  <ion-list>
+    <ion-item *ngFor="let task of sortedTasks">
+        <ion-card class="card">
+            <ion-card-header>
+                  <ion-card-subtitle>{{task.location}}</ion-card-subtitle>
+                  <ion-card-title>{{task.task}}</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              {{task.textarea}}
+              <ion-label>{{task.start | date:'shortTime'}} - {{task.end | date:'shortTime'}}</ion-label>
+            </ion-card-content>
+          </ion-card>   
+          <ion-button style="float: right;" (click)="deleteItem(task)">
+              <ion-icon  name="close"></ion-icon>
+          </ion-button>       
+    </ion-item>
+  </ion-list>
+</ion-content>

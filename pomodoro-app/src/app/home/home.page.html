@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar class="toolbar">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Pomodoro
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="content">
+  <ion-item class="new-task">
+    <ion-textarea class="textarea" [(ngModel)]="textarea" placeholder="Adj meg egy új teendőt..."></ion-textarea>
+  </ion-item>
+  <ion-list>
+      <ion-item>
+        <ion-input [(ngModel)]="task" placeholder="Feladat..."></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input [(ngModel)]="location" placeholder="Helszín..."></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Kezdete</ion-label>
+        <ion-datetime display-format="h:mm A" picker-format="h:mm A" [(ngModel)]="startString" ></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label>Vége</ion-label>
+        <ion-datetime display-format="h:mm A" picker-format="h:mm A" [(ngModel)]="endString" ></ion-datetime>
+      </ion-item>
+    </ion-list>
+  <ion-button expand="block" style="--background: #218380" (click)="addTask()">Hozzáad</ion-button>
+  <div *ngIf="visible" class="chip-wrapper">
+    <ion-chip *ngIf="visible" class="chip">
+        <ion-label>Sikeres hozzáadás</ion-label>
+    </ion-chip> 
+  </div>   
+</ion-content>

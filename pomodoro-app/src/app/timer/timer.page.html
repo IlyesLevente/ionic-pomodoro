@@ -1,0 +1,65 @@
+<ion-header>
+    <ion-toolbar class="toolbar">
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>
+        Pomodoro
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+<ion-content>
+    <div class="progress-wrapper">
+        <div class="current" [ngStyle]="getOverlayStyle()">{{ current }}/{{ max }}</div>
+        <div class="current" [ngStyle]="getOverlayStyleMinute()">{{ second }}</div>
+        <round-progress
+          [current]="current"
+          [max]="max"
+          [stroke]="stroke"
+          [radius]="radius"
+          [semicircle]="semicircle"
+          [rounded]="rounded"
+          [responsive]="responsive"
+          [clockwise]="clockwise"
+          [color]="gradient ? 'url(#gradient)' : color"
+          [background]="background"
+          [duration]="duration"
+          [animation]="animation"
+          [animationDelay]="animationDelay"></round-progress>
+        <round-progress
+          [current]="second"
+          [max]="max2"
+          [stroke]="stroke"
+          [radius]="radius2"
+          [semicircle]="semicircle"
+          [rounded]="rounded"
+          [responsive]="responsive"
+          [clockwise]="clockwise"
+          [color]="gradient ? 'url(#gradient)' : color2"
+          [background]="background"
+          [duration]="duration"
+          [animation]="animation"
+          [animationDelay]="animationDelay" class="current" [ngStyle]="middle()">></round-progress>
+      </div>
+      <ion-card>
+        <ion-card-content class="center">
+            <ion-button (click)="start()" style="--background: #218380"><ion-icon name="play"></ion-icon></ion-button>
+            <ion-button (click)="pause()" style="--background: #218380"><ion-icon name="pause"></ion-icon></ion-button>
+            <ion-button (click)="restart()" style="--background: #218380"><ion-icon name="refresh"></ion-icon></ion-button>
+        </ion-card-content>
+      </ion-card>
+      <ion-item style="--background: #218380; --color: white">
+          <ion-label >Feladatok</ion-label>
+      </ion-item>
+      <ion-list>
+          <ion-item *ngFor="let task of sortedTasks;let i = index">
+              <ion-card [style.background-color]="task.color" class="card" (click)=changeColor(i)>
+                  <ion-card-header>
+                    <ion-card-subtitle [ngStyle]="{'color': task.color == 'green' || task.color == '#D81159' ? 'white' : ''}">{{task.location}}</ion-card-subtitle>
+                    <ion-card-title [ngStyle]="{'color': task.color == 'green' || task.color == '#D81159' ? 'white' : ''}">{{task.task}}</ion-card-title>
+                  </ion-card-header>
+              </ion-card>          
+          </ion-item>
+        </ion-list>
+</ion-content>
